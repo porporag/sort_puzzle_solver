@@ -6,7 +6,7 @@ class phial():
         self.container_region = container_region
         
     def edge_color_detection(self,container_region):
-        cnt = edge_detection(container_region,0,6)        
+        cnt = edge_detection(container_region,0,10)
         y_lims = [cnt[i][1][0][1] for i in range(0,len(cnt))]
         eps = 5
         diff = np.diff(y_lims)

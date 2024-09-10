@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from phial import phial
 from utils import *
+from graph import Board
+from solver import dfs
 
 #%%
 '''Find phials' contours'''
@@ -14,7 +16,7 @@ cnt = edge_detection(cut_img,10,40)
 number_of_phials = len(cnt)
 print('Number of phials: ', number_of_phials)
 cv.drawContours(cut_img, cnt, -1, (0, 255, 0), 2) 
-plt.imshow(cut_img) 
+# plt.imshow(cut_img) 
 #%%
 '''Drawing single phial with edges highlighted'''
 global_colori = []
@@ -23,18 +25,21 @@ offset_rect_y = 30
 offset_rect_x = 10
 
 global_matrix = []
+global_n_colors = []
 for c in cnt:
     x, y, w, h = cv.boundingRect(c)
     container_region = cut_img[y+offset_rect_y:y+h-offset_rect_y,x+offset_rect_x :x+w-offset_rect_x]
     colors = phial(container_region)
     contours,y_lims = colors.edge_color_detection(container_region)
-    plt.figure(i)
+    # plt.figure(i)
     cv.drawContours(container_region, contours, -1, (0, 255, 0), 2)
-    plt.imshow(container_region)
+    # plt.imshow(container_region)
     n_colors = colors.extracting_colors(y_lims)
     global_matrix.append(n_colors)
+    global_n_colors.append(len(n_colors))
     i = i +1
 
+max_color_number = np.max(global_n_colors)
 #%%
 '''Substitute RGB list with a single number as index'''
 
@@ -53,3 +58,9 @@ for element in global_matrix:
         for index,j in enumerate(element):
             j = tuple(j)
             element[index] = mapping[j]
+        
+
+global_matrix = tuple([tuple(np.flip(t)) for t in global_matrix])
+#%%
+history = dfs(global_matrix,max_color_number)
+#%%
