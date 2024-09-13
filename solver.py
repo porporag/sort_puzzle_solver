@@ -1,6 +1,6 @@
 #%%
 import copy
-
+import collections
 
 def is_winning(state,max_length):
     for i in range(len(state)):
@@ -51,6 +51,33 @@ def dfs(board,max_length):
             print("No solution found")
             break
         state, history = frontier.pop()
+        if is_winning(state,max_length):
+            print(f"Solution of size {len(history)} found in {i} iterations")
+            break
+        else:
+            for neighbor, text_description in generate_neighbors(state,max_length):
+                sorted_neighbor = tuple(sorted(neighbor))
+                if sorted_neighbor not in seen_states:
+                    new_history = copy.deepcopy(history) + [text_description]
+                    frontier.append([neighbor, new_history])
+                    seen_states.add(sorted_neighbor)
+        i += 1
+    return history
+
+'''Implementation of breadth first search algorithm'''
+
+def bfs(board,max_length):
+
+    frontier = collections.deque([[board, []]])
+    seen_states = set()
+    seen_states.add(tuple(sorted(board)))
+    
+    i = 0
+    while True:
+        if len(frontier) == 0:
+            print("No solution found")
+            break
+        state, history = frontier.popleft()
         if is_winning(state,max_length):
             print(f"Solution of size {len(history)} found in {i} iterations")
             break

@@ -29,7 +29,7 @@ class phial():
     
     def extracting_colors(self,y_lims):
         colors = []
-        length = 50
+        length = 55
         for i in range(0,len(y_lims)-1):
             area_single_color = self.container_region[y_lims[i]:y_lims[i+1],:]
             if np.shape(area_single_color)[0] > length:

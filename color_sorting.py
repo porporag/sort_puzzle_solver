@@ -4,7 +4,7 @@ import numpy as np
 from phial import phial
 from utils import *
 from graph import Board
-from solver import dfs
+from solver import dfs,bfs
 
 #%%
 '''Find phials' contours'''
@@ -62,5 +62,5 @@ for element in global_matrix:
 
 global_matrix = tuple([tuple(np.flip(t)) for t in global_matrix])
 #%%
-history = dfs(global_matrix,max_color_number)
+history = bfs(global_matrix,max_color_number)
 #%%
