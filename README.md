@@ -7,14 +7,17 @@ A basic solver for mobile puzzle games with the aim of filling a phial with a si
 
 
 ## What's missing?
-For the time being, the script processes a screenshot from the game and translates it into arrays of colors. The true solving algorithm is still to be implemented.
+The solving algorithm should pour all the same colour at once, if the destination phial can contain it.
 
 ## Possible references
 https://stackoverflow.com/questions/69198052/finding-the-shortest-path-to-solve-colored-water-sorting-games
+
 https://github.com/tanjuntao/water-sort-puzzle
+
 https://github.com/discorev/colour-puzzle-solver
 
-BFS and DFS algorithms
+https://gist.github.com/calebrob6/ba9a39c6275990665362a27777b8efc9
+
 
 ## License
 The code is available with the [GPL 3.0 License](https://github.com/porporag/sort_puzzle_solver/blob/main/LICENSE)
