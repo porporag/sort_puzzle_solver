@@ -8,6 +8,7 @@ A basic solver for mobile puzzle games with the aim of filling a phial with a si
 
 ## What's missing?
 The solving algorithm should pour all the same colour at once, if the destination phial can contain it.
+Phials and color edge detection algorithm to be improved
 
 ## Possible references
 https://stackoverflow.com/questions/69198052/finding-the-shortest-path-to-solve-colored-water-sorting-games
